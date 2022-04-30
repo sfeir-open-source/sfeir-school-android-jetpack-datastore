@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+import "gps_coordinates.proto";
+
+option java_package = "com.sfeir.school.android.datastore.data.model";
+option java_multiple_files = true;
+
+message SportSession {
+    int32 id = 1;
+    SportType type = 2;
+    float distance = 3;
+    int64 started_at = 4;
+    int64 duration = 5;
+    float speed = 6;
+    int32 calories = 7;
+    int32 bpm = 8;
+    GpsCoordinates place = 9;
+}
+
+enum SportType {
+    WALKING = 0;
+    RUNNING = 1;
+    BIKING = 2;
+    SWIMMING = 3;
+}

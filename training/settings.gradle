@@ -1,0 +1,25 @@
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        google()
+        mavenCentral()
+    }
+}
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+rootProject.name = "SFEIR School DataStore"
+include ':base'
+include ':legacy-data'
+include ':legacy-data-repo'
+include ':legacy-settings-repo'
+include ':datastore-data'
+include ':datastore-data-repo'
+include ':datastore-settings-repo'
+include ':shared-repo'
+include ':app'
+

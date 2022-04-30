@@ -1,0 +1,59 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+    id 'com.google.protobuf' version '0.8.18'
+}
+
+android {
+    compileSdk rootProject.compileSdkVersion
+
+    defaultConfig {
+        minSdk rootProject.minSdkVersion
+        targetSdk rootProject.targetSdkVersion
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    compileOptions {
+        sourceCompatibility rootProject.sourceCompatibilityVersion
+        targetCompatibility rootProject.targetCompatibilityVersion
+    }
+
+    kotlinOptions {
+        jvmTarget = rootProject.kotlinJvmTargetVersion
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    flavorDimensions "environment"
+    productFlavors {
+        legacy {
+            dimension "environment"
+        }
+        datastore {
+            dimension "environment"
+        }
+    }
+}
+
+dependencies {
+    api "com.google.protobuf:protobuf-javalite:$protobufJavaliteVersion"
+
+    implementation "androidx.datastore:datastore-core:$dataStoreProtoVersion"
+}
+
+protobuf {
+    protoc {
+        artifact = "com.google.protobuf:protoc:$protocVersion"
+    }
+
+    generateProtoTasks {
+        all().each { task -> task.builtins { java { option 'lite' } } }
+    }
+}

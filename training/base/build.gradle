@@ -1,0 +1,67 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+}
+
+android {
+    compileSdk rootProject.compileSdkVersion
+
+    defaultConfig {
+        minSdk rootProject.minSdkVersion
+        targetSdk rootProject.targetSdkVersion
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    compileOptions {
+        sourceCompatibility rootProject.sourceCompatibilityVersion
+        targetCompatibility rootProject.targetCompatibilityVersion
+    }
+
+    kotlinOptions {
+        jvmTarget = rootProject.kotlinJvmTargetVersion
+        freeCompilerArgs += "-Xopt-in=kotlin.RequiresOptIn"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    flavorDimensions "environment"
+    productFlavors {
+        legacy {
+            dimension "environment"
+        }
+        datastore {
+            dimension "environment"
+        }
+    }
+}
+
+dependencies {
+    api "androidx.core:core-ktx:$coreKtxVersion"
+
+    api "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"
+    api "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion"
+
+    implementation "com.google.dagger:hilt-android:$hiltVersion"
+    kapt "com.google.dagger:hilt-compiler:$hiltVersion"
+
+    api "com.jakewharton.timber:timber:$timberVersion"
+
+    api "com.google.code.gson:gson:$gsonVersion"
+
+    testApi "junit:junit:$junitVersion"
+    androidTestApi "androidx.test.ext:junit:$junitAndroidVersion"
+    androidTestApi "androidx.test.espresso:espresso-core:$espressoVersion"
+}
+
+hilt {
+    enableAggregatingTask = true
+}

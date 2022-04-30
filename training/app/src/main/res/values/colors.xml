@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <color name="black">#FF000000</color>
+  <color name="white">#FFFFFFFF</color>
+
+  <color name="sfeir_navy_blue">#0b4269</color>
+  <color name="sfeir_dark_purple">#1D1D2C</color>
+  <color name="sfeir_orange">#e34c26</color>
+  <color name="sfeir_pink">#F00B51</color>
+</resources>

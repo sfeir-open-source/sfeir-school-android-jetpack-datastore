@@ -1,0 +1,72 @@
+[
+  {
+    "id": 1,
+    "type": "WALKING",
+    "distance": 3000,
+    "startedAt": "2022-04-26T10:00:00",
+    "duration": 3600,
+    "speed": 5,
+    "calories": 739,
+    "bpm": 80,
+    "place": {
+      "latitude": 48.950001,
+      "longitude": 1.81667
+    }
+  },
+  {
+    "id": 2,
+    "type": "RUNNING",
+    "distance": 10000,
+    "startedAt": "2022-04-28T15:30:00",
+    "duration": 7200,
+    "speed": 12,
+    "calories": 1382,
+    "bpm": 130,
+    "place": {
+      "latitude": 48.989323,
+      "longitude": 1.714958
+    }
+  },
+  {
+    "id": 3,
+    "type": "RUNNING",
+    "distance": 5493,
+    "startedAt": "2022-04-30T08:15:00",
+    "duration": 3600,
+    "speed": 11,
+    "calories": 849,
+    "bpm": 126,
+    "place": {
+      "latitude": 48.98333,
+      "longitude": 2
+    }
+  },
+  {
+    "id": 4,
+    "type": "BIKING",
+    "distance": 24865,
+    "startedAt": "2022-04-30T14:00:00",
+    "duration": 4500,
+    "speed": 24,
+    "calories": 1759,
+    "bpm": 135,
+    "place": {
+      "latitude": 48.909203,
+      "longitude": 1.849405
+    }
+  },
+  {
+    "id": 5,
+    "type": "SWIMMING",
+    "distance": 2743,
+    "startedAt": "2022-05-01T15:00:00",
+    "duration": 2746,
+    "speed": 8,
+    "calories": 563,
+    "bpm": 120,
+    "place": {
+      "latitude": 48.933331,
+      "longitude": 2.05
+    }
+  }
+]
