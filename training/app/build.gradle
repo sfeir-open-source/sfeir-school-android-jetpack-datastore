@@ -1,77 +1,81 @@
 plugins {
-    id 'com.android.application'
-    id 'org.jetbrains.kotlin.android'
-    id 'androidx.navigation.safeargs'
-    id 'kotlin-kapt'
-    id 'dagger.hilt.android.plugin'
+  id 'com.android.application'
+  id 'org.jetbrains.kotlin.android'
+  id 'androidx.navigation.safeargs'
+  id 'kotlin-kapt'
+  id 'dagger.hilt.android.plugin'
 }
 
 android {
-    compileSdk rootProject.compileSdkVersion
+  compileSdk rootProject.compileSdkVersion
 
-    defaultConfig {
-        applicationId "com.sfeir.school.android.datastore"
-        minSdk rootProject.minSdkVersion
-        targetSdk rootProject.targetSdkVersion
-        versionCode 1
-        versionName "1.0"
+  defaultConfig {
+    applicationId "com.sfeir.school.android.datastore"
+    minSdk rootProject.minSdkVersion
+    targetSdk rootProject.targetSdkVersion
+    versionCode 1
+    versionName "1.0"
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+  }
+
+  compileOptions {
+    sourceCompatibility rootProject.sourceCompatibilityVersion
+    targetCompatibility rootProject.targetCompatibilityVersion
+  }
+
+  kotlinOptions {
+    jvmTarget = rootProject.kotlinJvmTargetVersion
+    freeCompilerArgs += "-Xopt-in=kotlin.RequiresOptIn"
+  }
+
+  buildFeatures {
+    viewBinding true
+  }
+
+  buildTypes {
+    release {
+      minifyEnabled false
+      proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
     }
+  }
 
-    compileOptions {
-        sourceCompatibility rootProject.sourceCompatibilityVersion
-        targetCompatibility rootProject.targetCompatibilityVersion
+  flavorDimensions "environment"
+  productFlavors {
+    legacy {
+      dimension "environment"
     }
-
-    kotlinOptions {
-        jvmTarget = rootProject.kotlinJvmTargetVersion
-        freeCompilerArgs += "-Xopt-in=kotlin.RequiresOptIn"
+    datastore {
+      dimension "environment"
     }
-
-    buildFeatures {
-        viewBinding true
-    }
-
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
-    }
-
-    flavorDimensions "environment"
-    productFlavors {
-        legacy {
-            dimension "environment"
-        }
-        datastore {
-            dimension "environment"
-        }
-    }
+  }
 }
 
 dependencies {
-    implementation project(':base')
-    implementation project(':shared-repo')
-    legacyImplementation project(':legacy-data-repo')
-    legacyImplementation project(':legacy-settings-repo')
-    datastoreImplementation project(':datastore-data-repo')
-    datastoreImplementation project(':datastore-settings-repo')
+  implementation project(':base')
+  implementation project(':shared-repo')
+  legacyImplementation project(':legacy-data-repo')
+  legacyImplementation project(':legacy-settings-repo')
+  // TODO: The goal of this training is to migrate the data layer from legacy (using File) to Proto Datastore.
+  // TODO: Once done, switch comment on these instructions to launch migration.
+  datastoreImplementation project(':legacy-data-repo')
+//  datastoreImplementation project(':datastore-data-repo')
+  // TODO
+  datastoreImplementation project(':datastore-settings-repo')
 
-    implementation "androidx.appcompat:appcompat:$appCompatVersion"
-    implementation "com.google.android.material:material:$materialVersion"
-    implementation "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
-    implementation "androidx.fragment:fragment-ktx:$fragmentVersion"
-    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion"
+  implementation "androidx.appcompat:appcompat:$appCompatVersion"
+  implementation "com.google.android.material:material:$materialVersion"
+  implementation "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
+  implementation "androidx.fragment:fragment-ktx:$fragmentVersion"
+  implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion"
 
-    implementation "androidx.navigation:navigation-fragment-ktx:$navigationVersion"
-    implementation "androidx.navigation:navigation-ui-ktx:$navigationVersion"
+  implementation "androidx.navigation:navigation-fragment-ktx:$navigationVersion"
+  implementation "androidx.navigation:navigation-ui-ktx:$navigationVersion"
 
-    implementation "com.google.dagger:hilt-android:$hiltVersion"
-    kapt "com.google.dagger:hilt-compiler:$hiltVersion"
+  implementation "com.google.dagger:hilt-android:$hiltVersion"
+  kapt "com.google.dagger:hilt-compiler:$hiltVersion"
 }
 
 hilt {
-    enableAggregatingTask = true
+  enableAggregatingTask = true
 }

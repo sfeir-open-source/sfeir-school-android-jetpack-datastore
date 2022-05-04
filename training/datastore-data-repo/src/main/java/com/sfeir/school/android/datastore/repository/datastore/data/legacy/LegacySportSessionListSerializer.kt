@@ -10,28 +10,28 @@ import java.io.File
 import java.lang.reflect.Type
 
 class LegacySportSessionListSerializer(
-	context: Context,
-	private val gson: Gson
+  context: Context,
+  private val gson: Gson
 ) {
-	private val mutex: Mutex = Mutex()
+  private val mutex: Mutex = Mutex()
 
-	private val file: File = File(context.cacheDir, SPORT_SESSIONS_FILE_NAME)
+  private val file: File = File(context.cacheDir, SPORT_SESSIONS_FILE_NAME)
 
-	suspend fun read(): List<LegacySportSession> {
-		if (!file.exists()) return emptyList()
+  suspend fun read(): List<LegacySportSession> {
+    if (!file.exists()) return emptyList()
 
-		mutex.withLock {
-			val json: String = file.readText()
+    mutex.withLock {
+      val json: String = file.readText()
 
-			val type: Type = object : TypeToken<List<LegacySportSession>>() {}.type
+      val type: Type = object : TypeToken<List<LegacySportSession>>() {}.type
 
-			return gson.fromJson(json, type)
-		}
-	}
+      return gson.fromJson(json, type)
+    }
+  }
 
-	suspend fun clear() {
-		mutex.withLock {
-			file.delete()
-		}
-	}
+  suspend fun clear() {
+    mutex.withLock {
+      file.delete()
+    }
+  }
 }

@@ -44,5 +44,9 @@ android {
 dependencies {
     implementation project(':base')
     legacyApi project(':legacy-data')
-    datastoreApi project(':datastore-data')
+    // TODO: The goal of this training is to migrate the data layer from legacy (using File) to Proto Datastore.
+    // TODO: Once done, switch comment on these instructions to launch migration.
+    datastoreApi project(':legacy-data')
+//    datastoreApi project(':datastore-data')
+    // TODO
 }
