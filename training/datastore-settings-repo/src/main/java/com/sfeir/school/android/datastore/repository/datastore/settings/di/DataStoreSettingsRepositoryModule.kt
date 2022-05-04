@@ -30,17 +30,7 @@ object DataStoreSettingsRepositoryModule {
 		@ApplicationContext context: Context,
 		oldSharedPrefs: SharedPreferences
 	): DataStore<Preferences> {
-		return PreferenceDataStoreFactory.create(
-			produceFile = { context.preferencesDataStoreFile(FileNameConst.PREFS_DATASTORE_FILE_NAME) },
-			migrations = listOf(
-				SharedPreferencesMigration(
-					produceSharedPreferences = { oldSharedPrefs }
-				)
-			),
-			corruptionHandler = ReplaceFileCorruptionHandler(
-				produceNewData = { emptyPreferences() }
-			)
-		)
+		TODO("Implement here the Preferences DataStore initialization. Use FileNameConst.PREFS_DATASTORE_FILE_NAME as file name.")
 	}
 
 	@Provides

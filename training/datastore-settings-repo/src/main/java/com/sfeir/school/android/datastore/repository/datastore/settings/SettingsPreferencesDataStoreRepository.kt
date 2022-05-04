@@ -19,62 +19,30 @@ class SettingsPreferencesDataStoreRepository(
 ) : SettingsRepository {
 
 	override val filterBySportType: Flow<SportTypeFilter>
-		get() = prefsDataStore.data.map { preferences ->
-			preferences[SettingsPreferencesDataStoreKeys.KEY_FILTER_BY_SPORT_TYPE]?.let { enumName ->
-				SportTypeFilter.valueOf(enumName)
-			} ?: SportTypeFilter.getDefaultValue()
-		}
+		get() = TODO("Implement here the sport type filter getter.")
 
 	override val filterByDistanceRange: Flow<FloatRange>
-		get() = prefsDataStore.data.map { preferences ->
-			FloatRange(
-				min = preferences[SettingsPreferencesDataStoreKeys.KEY_FILTER_BY_DISTANCE_RANGE_MIN] ?: DistanceRangeConst.MIN_VALUE,
-				max = preferences[SettingsPreferencesDataStoreKeys.KEY_FILTER_BY_DISTANCE_RANGE_MAX] ?: DistanceRangeConst.MAX_VALUE
-			)
-		}
+		get() = TODO("Implement here the distance range filter getter.")
 
 	override val sortBy: Flow<SportSessionSort>
-		get() = prefsDataStore.data.map { preferences ->
-			preferences[SettingsPreferencesDataStoreKeys.KEY_SORT_BY]?.let { enumName ->
-				SportSessionSort.valueOf(enumName)
-			} ?: SportSessionSort.getDefaultValue()
-		}
+		get() = TODO("Implement here the sorting getter.")
 
 	override val isSortDescending: Flow<Boolean>
-		get() = prefsDataStore.data.map { preferences ->
-			preferences[SettingsPreferencesDataStoreKeys.KEY_IS_SORT_DESCENDING] ?: false
-		}
+		get() = TODO("Implement here the sorting direction getter.")
 
 	override fun setFilterBySportType(sportTypeFilter: SportTypeFilter) {
-		coroutineScopeIO.launch {
-			prefsDataStore.edit { preferences ->
-				preferences[SettingsPreferencesDataStoreKeys.KEY_FILTER_BY_SPORT_TYPE] = sportTypeFilter.name
-			}
-		}
+		TODO("Implement here the sport type filter setter.")
 	}
 
 	override fun setFilterByDistanceRange(distanceRange: FloatRange) {
-		coroutineScopeIO.launch {
-			prefsDataStore.edit { preferences ->
-				preferences[SettingsPreferencesDataStoreKeys.KEY_FILTER_BY_DISTANCE_RANGE_MIN] = distanceRange.min
-				preferences[SettingsPreferencesDataStoreKeys.KEY_FILTER_BY_DISTANCE_RANGE_MAX] = distanceRange.max
-			}
-		}
+		TODO("Implement here the distance range filter setter.")
 	}
 
 	override fun setSortBy(sportSessionSort: SportSessionSort) {
-		coroutineScopeIO.launch {
-			prefsDataStore.edit { preferences ->
-				preferences[SettingsPreferencesDataStoreKeys.KEY_SORT_BY] = sportSessionSort.name
-			}
-		}
+		TODO("Implement here the sorting setter.")
 	}
 
 	override fun setIsSortDescending(isSortDescending: Boolean) {
-		coroutineScopeIO.launch {
-			prefsDataStore.edit { preferences ->
-				preferences[SettingsPreferencesDataStoreKeys.KEY_IS_SORT_DESCENDING] = isSortDescending
-			}
-		}
+		TODO("Implement here the sorting direction setter.")
 	}
 }
